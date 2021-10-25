@@ -1,0 +1,7 @@
+.dog__body td {
+    border: 1px solid black;
+    text-align: center;
+}
+.dog__image {
+    width: 150px;
+}

@@ -1,0 +1,7 @@
+.dogs {
+    width: 100%;
+    border: 1px solid black;
+}
+.dogs_head th {
+    border: 1px solid red;
+}
