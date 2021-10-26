@@ -3,10 +3,10 @@ import { useState } from "react";
 export const useGetData = (callback) => {
   const [loading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
-  const fetching = async () => {
+  const fetching = async (page) => {
     try {
       setIsLoading(true);
-      await callback();
+      await callback(page);
     } catch (e) {
       setError(e.message);
     } finally {

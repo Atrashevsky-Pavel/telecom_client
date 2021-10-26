@@ -2,25 +2,25 @@ import React, { useEffect, useState } from "react";
 import MyButton from "../UI/MyButton/MyButton";
 import classes from "./Pagination.module.css";
 
-const Pagination = ({ lengthData, pageSize, setPage }) => {
-  const [buttons, setButton] = useState([]);
+const Pagination = ({ quantityButtons, page, onClick }) => {
+  const [buttons, setButtons] = useState([]);
   useEffect(() => {
-    const buttonArr = [];
-    for (let i = 0; i < lengthData / pageSize; i++) {
-      buttonArr.push(i + 1);
+    const buttons = [];
+    for (let i = 1; i <= quantityButtons; i++) {
+      buttons.push(i);
     }
-    setButton(buttonArr);
-  }, [lengthData, pageSize]);
+    setButtons(buttons);
+  }, [quantityButtons, page]);
 
   return (
     <div className={classes.pagination}>
-      {buttons.length > 1
-        && buttons.map((button) => (
-            <MyButton key={button} onClick={() => setPage(button)}>
-              {button}
-            </MyButton>
-          ))
-       }
+      {page + "/" + quantityButtons}
+      <br />
+      {buttons.map((button) => (
+        <MyButton key={button} onClick={() => onClick(button)}>
+          {button}
+        </MyButton>
+      ))}
     </div>
   );
 };

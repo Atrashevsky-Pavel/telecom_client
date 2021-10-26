@@ -1,10 +1,10 @@
 import React from "react";
 import classes from "./Dog.module.css";
 
-const Dog = ({ dog, index, pageSize, page }) => {
+const Dog = ({ dog, index, paginationSort, page }) => {
   return (
     <tr className={classes.dog__body}>
-      <td>{index + 1 + pageSize * (page - 1)}</td>
+      <td>{index + 1 + paginationSort * (page - 1)}</td>
       <td>{dog.title}</td>
       <td>{dog.breed}</td>
       <td>
