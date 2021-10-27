@@ -1,6 +1,12 @@
 .my__button {
-    background: red;
     color: white;
-    cursor: pointer;
     margin-left: 5px;
+    padding: 3px 6px;
+}
+.my__button_active {
+    background-color: red;
+    cursor: pointer;
+}
+.my__button_disabled {
+    background-color: goldenrod;
 }

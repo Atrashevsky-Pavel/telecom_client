@@ -10,6 +10,5 @@ export const filterPreparation = (page, filter) => {
     filterMain.pagination.pageSize = filter.paginationSort;
   }
   filterMain.pagination.page = page;
-  console.log(filterMain);
   return filterMain;
 };

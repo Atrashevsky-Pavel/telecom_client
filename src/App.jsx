@@ -6,6 +6,7 @@ import DogsService from "./Api/DogsService";
 import Filter from "./Components/Filter/Filter";
 import { useGetData } from "./hooks/useGetData";
 import { filterPreparation } from "./utils/filterPreparation";
+import "./App.css";
 
 const App = () => {
   const [dogs, setDogs] = useState([]);
@@ -15,8 +16,10 @@ const App = () => {
     title: "",
     paginationSort: 5,
   });
-  const [quantityButtons, setQuantityButtons] = useState(0);
-  const [page, setPage] = useState(1);
+  const [pagesState, setPagesState] = useState({
+    page: 1,
+    quantityButtons: 0,
+  });
 
   const [fetching, isLoading, error] = useGetData(async (page) => {
     const breedsData = [];
@@ -30,9 +33,8 @@ const App = () => {
     dogsData.data.map((dog) => {
       dog.breed = breedsData.find((breed) => breed._id === dog.breedId).title;
     });
+    setPagesState({ page, quantityButtons: dogsData.quantityButtons });
     setDogs(dogsData.data);
-    setQuantityButtons(dogsData.quantityButtons);
-    setPage(page);
   });
 
   useEffect(() => {
@@ -41,24 +43,23 @@ const App = () => {
     })();
   }, [filter]);
 
-  return (
+  return error ? (
+    <h3 className="error">Ошибка {error}</h3>
+  ) : (
     <div className="App">
-      <Filter breeds={breeds} setFilter={setFilter} filter={filter} />
-      {error && <h3>Ошибка {error}</h3>}
       {isLoading ? (
-        <h1>Идет загрузка</h1>
+        <div className="loading">
+          <p>Идет загрузка...</p>
+        </div>
       ) : (
-        <div>
+        <div className="App__content">
+          <Filter breeds={breeds} setFilter={setFilter} filter={filter} />
           <ListDogs
             dogs={dogs}
-            page={page}
+            page={pagesState.page}
             paginationSort={filter.paginationSort}
           />
-          <Pagination
-            quantityButtons={quantityButtons}
-            page={page}
-            onClick={fetching}
-          ></Pagination>
+          <Pagination pagesState={pagesState} onClick={fetching} />
         </div>
       )}
     </div>

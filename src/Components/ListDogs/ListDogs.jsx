@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Dog from "../Dog/Dog";
 import classes from "./LIstDogs.module.css";
 

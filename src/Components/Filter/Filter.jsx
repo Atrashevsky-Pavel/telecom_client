@@ -5,9 +5,10 @@ import MySelect from "../UI/MySelect/MySelect";
 
 const Filter = ({ breeds, setFilter, filter }) => {
   const pagination = [
+    { title: "По 3 записей", _id: 3 },
     { title: "По 5 записей", _id: 5 },
     { title: "По 10 записей", _id: 10 },
-    { title: "По 15 записей", _id: 15 },
+    { title: "По 15 записей", _id: 15 }
   ];
   return (
     <div className={classes.filter}>
